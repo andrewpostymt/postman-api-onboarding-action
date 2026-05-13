@@ -162,6 +162,8 @@ describe('postman-api-onboarding-action composite contract', () => {
         'postman-access-token',
         'postman-team-id',
         'postman-stack',
+        'git-provider',
+        'ado-token',
         'github-token',
         'gh-fallback-token',
         'repo-write-mode',
@@ -511,9 +513,9 @@ describe('postman-api-onboarding-action composite contract', () => {
       expect(manifest.inputs['generate-ci-workflow']?.default).toBe('true');
     });
 
-    it('ci-workflow-path defaults to .github/workflows/ci.yml', () => {
+    it('ci-workflow-path has no static default (provider-dependent at runtime)', () => {
       const manifest = loadManifest();
-      expect(manifest.inputs['ci-workflow-path']?.default).toBe('.github/workflows/ci.yml');
+      expect(manifest.inputs['ci-workflow-path']?.default).toBeUndefined();
     });
 
     it('environments-json defaults to ["prod"]', () => {
